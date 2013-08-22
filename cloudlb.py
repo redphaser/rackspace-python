@@ -18,11 +18,15 @@ print "=" * 24
 
 regions = ['dfw', 'iad', 'ord', 'syd']
 
-x = PrettyTable(["Region", "Name", "ID", "Status", "Public IP", "ServiceNet IP", "Cluster"])
+x = PrettyTable(["Region", "Name", "ID", "Status",
+                "Public IP", "ServiceNet IP", "Cluster"])
 x.padding_width = 1
 for n in regions:
     clb = pyrax.connect_to_cloud_loadbalancers(n.upper())
     lb = clb.list()
     for i in lb:
-        x.add_row([n.upper(), i.name, i.id, i.status, clb.get(i.id).sourceAddresses["ipv4Public"], clb.get(i.id).sourceAddresses["ipv4Servicenet"], clb.get(i.id).cluster])
+        x.add_row([n.upper(), i.name, i.id, i.status,
+                  clb.get(i.id).sourceAddresses["ipv4Public"],
+                  clb.get(i.id).sourceAddresses["ipv4Servicenet"],
+                  clb.get(i.id).cluster])
 print x
