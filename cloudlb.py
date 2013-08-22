@@ -9,7 +9,7 @@ pyrax.set_setting("identity_type", "rackspace")
 if (len(sys.argv) == 3):
     pyrax.set_credentials(sys.argv[1], sys.argv[2])
 else:
-    print "Usage: list.exhaust <username> <api key>"
+    print "Usage: cloudlb.py <username> <api key>"
     sys.exit(0)
 
 print "=" * 24
